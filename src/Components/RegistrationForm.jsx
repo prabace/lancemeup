@@ -12,7 +12,7 @@ const RegistrationForm = () => {
   };
 
   return(
-    <div className="mx-auto px-48 py-48 shadow-2xl rounded-3xl ">
+    <div className="mx-auto px-48 py-48 shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)]  rounded-3xl ">
     <h1 className="text-4xl  flex justify-center items-center">SignUp</h1>     
     <form
       onSubmit={handleSubmit}
@@ -22,7 +22,7 @@ const RegistrationForm = () => {
       <label>
         Name:
         <input
-          className="shadow-xl rounded-md ml-8"
+          className="shadow-xl rounded-md ml-10"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -32,7 +32,7 @@ const RegistrationForm = () => {
       <label>
         Email:
         <input
-          className="shadow-xl rounded-md ml-8"
+          className="shadow-xl rounded-md ml-10"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -50,7 +50,7 @@ const RegistrationForm = () => {
       </label>
       <br />
       <button
-      className="mt-6 shadow-xl px-9 py-4 rounded-3xl"
+      className="mt-6 shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)] px-9 py-4 rounded-3xl"
       type="submit">
       Submit
       </button>

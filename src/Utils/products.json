@@ -1,0 +1,34 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "title": "Nike Air",
+            "price": "Rs.50,000",
+            "type": "Formal"
+        },
+        {
+            "id": 2,
+            "title": "Air Jordan",
+            "price": "Rs.25,000",
+            "type": "Sports"
+        },
+        {
+            "id": 3,
+            "title": "Zara S23",
+            "price": "Rs.25,000",
+            "type": "Sneakers"
+        },
+        {
+            "id": 4,
+            "title": "361 Retro",
+            "price": "Rs.25,000",
+            "type": "Sports"
+        },
+        {
+            "id": 5,
+            "title": "Adidas Raptor",
+            "price": "Rs.25,000",
+            "type": "Casual"
+        }
+    ]
+}
