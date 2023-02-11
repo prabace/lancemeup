@@ -6,7 +6,7 @@ import adidas from '../Assets/adidas-shoe.gif'
 export const Login = () => {
   return (
 
-    <div className='w-full h-screen text-black bg-slate-200 font-raleway text-lg flex flex-col justify-center'>
+    <div className='w-full h-screen bg-main text-black font-raleway text-lg flex flex-col justify-center'>
        
 
         <LoginForm/>

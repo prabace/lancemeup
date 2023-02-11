@@ -16,7 +16,7 @@ const RegistrationForm = () => {
     <h1 className="text-4xl  flex justify-center items-center">SignUp</h1>     
     <form
       onSubmit={handleSubmit}
-      className=" flex mt-24 flex-col justify-center items-center"
+      className=" flex mt-24 font-bold flex-col justify-center items-center"
     >
       
       <label>
@@ -50,11 +50,11 @@ const RegistrationForm = () => {
       </label>
       <br />
       <button
-      className="mt-6 shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)] px-9 py-4 rounded-3xl"
+      className="mt-6 font-bold bg-button shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)] px-9 py-4 rounded-3xl"
       type="submit">
       Submit
       </button>
-      <h2 className="mt-4">Already have an account?<Link to="/signin"> SignIn</Link></h2>
+      <h2 className="mt-4 font-semibold text-secondary">Already have an account?<Link to="/signin"><span className="text-primary font-bold"> SignIn </span></Link></h2>
     </form>
   </div>
   
