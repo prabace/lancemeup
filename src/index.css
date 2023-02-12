@@ -3,7 +3,7 @@
 
 @layer components {
   .card {
-    @apply bg-primary object-cover text-primary w-[24rem] min-h-[10rem] shadow-lg rounded-md overflow-hidden
+    @apply bg-white object-cover text-primary w-[24rem] min-h-[10rem] shadow-lg rounded-md overflow-hidden
   }
 }
 

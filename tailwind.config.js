@@ -5,8 +5,11 @@ module.exports = {
     colors: {
       'main':'#e2e8f0',
      'button':'#A3CFCD',
-     'primary':'#4B4A54',
-     'secondary':'#677381',
+     'primary':'#f9a826',
+     'secondary':'#FFAB5C',
+     'ternary':'#FFB38A',
+     'white':'#ffffff',
+     'transparent':'#00FFFFFF'
     },
 
     screens: {
@@ -25,6 +28,7 @@ module.exports = {
     },
     
     extend: {
+     
       fontFamily: {
         'raleway': ['Raleway', 'sans-serif']
       },
