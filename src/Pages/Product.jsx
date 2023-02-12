@@ -4,7 +4,7 @@ import Cards from '../Components/Cards'
 const Product = () => {
 
   return (
-    <div className='m-20 bg-white'>
+    <div className='relative m-10 bg-white'>
         <Cards/>    
          
         
