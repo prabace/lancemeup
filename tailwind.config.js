@@ -9,7 +9,10 @@ module.exports = {
      'secondary':'#FFAB5C',
      'ternary':'#FFB38A',
      'white':'#ffffff',
-     'transparent':'#00FFFFFF'
+     'transparent':'#00FFFFFF',
+     'error':'#880808',
+     'success':'#4BB543',
+     'dark':'#050505'
     },
 
     screens: {
