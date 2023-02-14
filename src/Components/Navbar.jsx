@@ -26,8 +26,8 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to="support" offset={-50} duration={500}>
-                Support
+              <Link to="/product" offset={-50} duration={500}>
+                Products
               </Link>
             </li>
             <li>

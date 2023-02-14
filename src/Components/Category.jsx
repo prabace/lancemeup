@@ -1,58 +1,66 @@
-// import React, {useState,useEffect} from "react";
-// import Cards from "./Cards";
+import React, {useState,useEffect} from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Cards from "./Cards";
+import { setCategory, selectCategory } from "../Redux/slices/filterSlice";
 
+const Category = () => {
 
-// const Category = () => {
-
-// const[categories, setCategories] = useState([]);
+ const[categories, setCategories] = useState([]);
 // const [selectedCategory, setSelectedCategory] = useState('');
 // const [filteredProducts, setFilteredProducts] = useState([]);
 
-//     useEffect(() => {
-//         const fetchData = async () => {
-//           const data = await fetch("https://fakestoreapi.com/products/categories");
-    
-//           const response = await data.json();
-    
-//           console.log(response);
-//           setCategories(response);
-//         };
-//         fetchData();
-//       }, []);
 
-//       useEffect(() => {
-//         const fetchData = async () => {
-//           const data = await fetch(`https://fakestoreapi.com/products/category/${selectedCategory}`);
+const category = useSelector(
+    (state) => state.productFilter.category
+    )
+
+
+  const dispatch = useDispatch()
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+          const data = await fetch("https://fakestoreapi.com/products/categories");
     
-//           const response = await data.json();
+          const response = await data.json();
     
-//           console.log(response);
-//           setFilteredProducts(response);
-//         };
-//         fetchData();
-//       }, [selectedCategory]);
+          console.log(response);
+          setCategories(response);
+        };
+        fetchData();
+      }, []);
 
-//       const handleCategoryChange = event => {
-//       setSelectedCategory(event.target.value);
-//       };
+    //   useEffect(() => {
+    //     const fetchData = async () => {
+    //       const data = await fetch(`https://fakestoreapi.com/products/category/${selectedCategory}`);
+    
+    //       const response = await data.json();
+    
+    //       console.log(response);
+    //       setFilteredProducts(response);
+    //     };
+    //     fetchData();
+    //   }, [selectedCategory]);
 
-//   return (
-//     <div>
-//     <select value={selectedCategory} onChange={handleCategoryChange}>
-//       <option value="">All categories</option>
-//       {categories.map(category => (
-//         <option key={category} value={category}>{category}</option>
-//       ))}
-//     </select>
-//     <ul>
-//       {filteredProducts.map(product => (
-//         <Cards key={product.id} 
-//             image={product.image}
-//             title= {product.title}/>
-//       ))}
-//     </ul>
-//   </div>
-//   );
-// };
+    //   const handleCategoryChange = event => {
+    //   setSelectedCategory(event.target.value);
+    //   };
 
-// export default Category;
+  return (
+    <div>
+     <select value={category} onChange={(e)=> 
+     {console.log(e.target.value)
+        dispatch(setCategory(e.target.value));
+                    dispatch(selectCategory(e.target.value=='false'?false:true))
+    }}>
+      <option value={false}>All categories</option>
+      {categories.map(category => (
+        <option key={category} value={category}>{category}</option>
+      ))}
+    </select>
+    
+  </div>
+  );
+};
+
+export default Category;

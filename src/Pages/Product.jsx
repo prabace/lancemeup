@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Cards from "../Components/Cards";
 import Filter from "../Components/Filter";
+import Category from "../Components/Category";
+
 import { useSelector } from "react-redux";
 const Product = () => {
   const [products, setProducts] = useState([]);
@@ -9,6 +11,14 @@ const Product = () => {
   const filter = useSelector(
     (state) => state.productFilter.filter
     )
+
+    const category = useSelector(
+      (state) => state.productFilter.category
+      )
+      
+    const selectCategory = useSelector(
+        (state) => state.productFilter.selectCategory
+        )
 
 
   useEffect(() => {
@@ -44,10 +54,17 @@ const Product = () => {
     </div>
   );
 
+
+
   let displayProducts = Object.keys(products)
-    .filter((product) =>
-      filter ? products[product].title.includes(filter) : true
-    )
+    .filter((product) =>{
+      if(selectCategory){
+        console.log(selectCategory, products[product].category)
+        return products[product].category === category
+      }
+      let title = products[product].title.toLowerCase()
+     return filter ? title.includes(filter) : true
+})
     .map((product) => {
       return (
         <Cards
@@ -64,9 +81,20 @@ const Product = () => {
   return (
     <div className="grid grid-cols-[300px_minmax(900px,_1fr)]  h-screen m-20">
       
-      <div className=" p-4 ">
+      <div className=" ">
+        <div>
         <Filter/>  
+        </div>
+        <div className="mt-10">
+          <h2 className="text-xl">Category</h2>
+          <div className="mt-5 text-center">
+          <Category />
+          </div>
+        </div>
       </div>
+ 
+       
+      
       
       
       <div>

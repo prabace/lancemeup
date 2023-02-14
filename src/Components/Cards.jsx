@@ -17,7 +17,7 @@ const Cards = (props) => {
          
               <h3 className="text-2xl truncate">{props.title}</h3>
            
-              <div className="flex grid grid-cols-2 justify-between  py-3 my-2">
+              <div className=" grid grid-cols-2 justify-between  py-3 my-2">
                 <div>
                 <h2 className="text-lg font-medium">
                   ${props.price}
