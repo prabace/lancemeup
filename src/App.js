@@ -4,10 +4,11 @@ import Product from './Pages/Product';
 import Navbar from './Components/Navbar';
 import {BrowserRouter,Routes, Route} from "react-router-dom"
 
+
 function App() {
   return (
     <div>
-      
+    
       <BrowserRouter>
       <Navbar/>
       
@@ -21,6 +22,7 @@ function App() {
       </Routes>
       
       </BrowserRouter>
+     
     </div>
   );
 }

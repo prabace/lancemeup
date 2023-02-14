@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Cards from "../Components/Cards";
 import Filter from "../Components/Filter";
-
+import { useSelector } from "react-redux";
 const Product = () => {
   const [products, setProducts] = useState([]);
+
+
+  const filter = useSelector(
+    (state) => state.productFilter.filter
+    )
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,37 +43,42 @@ const Product = () => {
       </svg>
     </div>
   );
-  
 
-  let displayProducts = Object.keys(products).map((product) => {
-    return (
-      <Cards
-        key={products[product].id}
-        id={products[product].id}
-        title={products[product].title}
-        price={products[product].price}
-        category={products[product].category}
-        image={products[product].image}
-      />
-    );
-  });
+  let displayProducts = Object.keys(products)
+    .filter((product) =>
+      filter ? products[product].title.includes(filter) : true
+    )
+    .map((product) => {
+      return (
+        <Cards
+          key={products[product].id}
+          id={products[product].id}
+          title={products[product].title}
+          price={products[product].price}
+          category={products[product].category}
+          image={products[product].image}
+        />
+      );
+    });
 
   return (
     <div className="grid grid-cols-[300px_minmax(900px,_1fr)]  h-screen m-20">
-     <div className=" h-[40rem] p-4  ">
-      <Filter/>
-     </div>
-     <div>
-      {products.length == 0 ? (
-        display
-      ) : (
-        <div className="relative m-10 bg-white gap-y-10 gap-x-8 grid mobile:grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4">
-          {displayProducts}
-        </div>
-      )}
+      
+      <div className=" p-4 ">
+        <Filter/>  
+      </div>
+      
+      
+      <div>
+        {products.length == 0 ? (
+          display
+        ) : (
+          <div className="relative m-10 bg-white gap-y-10 gap-x-8 grid mobile:grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4">
+            {displayProducts}
+          </div>
+        )}
+      </div>
     </div>
-    </div>
-
   );
 };
 

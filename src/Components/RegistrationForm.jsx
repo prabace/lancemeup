@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import justdoit from "../Assets/justdoit.png";
 import useNameValidation from "../Hooks/useNameValidation";
@@ -6,12 +6,8 @@ import useEmailValidation from "../Hooks/useEmailValidation";
 import usePasswordValidation from "../Hooks/usePasswordValidation";
 import useLocalStorage from "../Hooks/useLocalStorage";
 
-
-
-
 const RegistrationForm = () => {
-
-  const [names, setNames] = useLocalStorage('name','')
+  const [names, setNames] = useLocalStorage("name", "");
 
   const name = useNameValidation();
   const email = useEmailValidation();
@@ -54,15 +50,11 @@ const RegistrationForm = () => {
                 <input
                   className=" border-b border-[#f9a826] appearance-none bg-main rounded w-full py-2 px-7 leading-tight focus:outline-none focus:shadow-outline "
                   type="text"
-                  //value={names}
-                  
-                   {...name}
-                    onChange={e=>  {setNames(e.target.value)
-                    console.log(e.target.value)
-                    }}
-
-                  
-                  
+                  onChange={(e) => {
+                    name.onChange(e)
+                    setNames(e.target.value);
+                    console.log(e.target.value);
+                  }}
                 />
                 {name.error ? (
                   <p className="text-error text-sm font-bold">{name.error}</p>

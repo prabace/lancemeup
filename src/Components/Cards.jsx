@@ -1,6 +1,5 @@
-import React,{useEffect, useState} from "react";
-import { Rating } from "@mui/material";
-import shoee from "../Assets/shoee.jpg";
+import React from "react";
+;
 
 const Cards = (props) => {
   //let products = require("../Utils/products.json");
@@ -18,15 +17,17 @@ const Cards = (props) => {
          
               <h3 className="text-2xl truncate">{props.title}</h3>
            
-              <div className="flex flex-row py-3 my-2">
+              <div className="flex grid grid-cols-2 justify-between  py-3 my-2">
+                <div>
                 <h2 className="text-lg font-medium">
-                  {props.price}
+                  ${props.price}
                 </h2>
+                </div>
+                <div  className="text-center">
+                 <h2 className="bg-item rounded-full w-[7rem]">{props.category}</h2>
+                </div>
               </div>
-              <div className="-mt-5 flex flex-row">
-                <Rating name="read-only" value={5} readOnly />
-                <h6 className="ml-4 text-gray-500">10 reviews</h6>
-              </div>
+             
 
 
               <div className="flex justify-center m-6 ">
