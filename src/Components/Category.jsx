@@ -47,7 +47,7 @@ const category = useSelector(
     //   };
 
   return (
-    <div>
+    <div className="">
      <select value={category} onChange={(e)=> 
      {console.log(e.target.value)
         dispatch(setCategory(e.target.value));

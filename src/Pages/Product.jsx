@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import Cards from "../Components/Cards";
 import Filter from "../Components/Filter";
 import Category from "../Components/Category";
-
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-const Product = () => {
+const Product = (handleAddToCart) => {
   const [products, setProducts] = useState([]);
 
 
@@ -74,38 +74,49 @@ const Product = () => {
           price={products[product].price}
           category={products[product].category}
           image={products[product].image}
+          
         />
       );
     });
 
   return (
-    <div className="grid grid-cols-[300px_minmax(900px,_1fr)]  h-screen m-20">
+    <div>
+     <div className="flex flex-row justify-between m-20">
+      <h2>Products</h2>
+      <a className="flex flex-row" href="/cart">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-10">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+      </svg>
+
+      </a>
+     </div>
+    <div className=" grid mobile:grid-cols-1 laptop:grid-cols-4 h-screen m-20">
       
-      <div className=" ">
-        <div>
+      <div className="max-w-[300px]">
+        
+          <div>
         <Filter/>  
         </div>
-        <div className="mt-10">
-          <h2 className="text-xl">Category</h2>
+       
+        <div className="rounded-lg mt-10 p-10 w-full h-[20rem] mobile:h-[10rem] shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)]">
+          <h2 className="text-xl">Select category</h2>
           <div className="mt-5 text-center">
           <Category />
           </div>
         </div>
       </div>
  
-       
       
-      
-      
-      <div>
+      <div className="col-span-3">
         {products.length == 0 ? (
           display
         ) : (
-          <div className="relative m-10 bg-white gap-y-10 gap-x-8 grid mobile:grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4">
+          <div className=" m-10 bg-white gap-x-8 grid grid-auto-fit-[25rem]">
             {displayProducts}
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 };

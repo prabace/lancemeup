@@ -2,6 +2,7 @@
 module.exports = {
   content: ["./src/**/*.{html,js,jsx}"],
   theme: {
+
     colors: {
       'main':'#e2e8f0',
      'button':'#A3CFCD',
@@ -38,5 +39,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+      require('@shrutibalasa/tailwind-grid-auto-fit')
+  ],
 }

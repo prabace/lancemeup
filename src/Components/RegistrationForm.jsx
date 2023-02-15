@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import justdoit from "../Assets/justdoit.png";
 import useNameValidation from "../Hooks/useNameValidation";
 import useEmailValidation from "../Hooks/useEmailValidation";
@@ -7,18 +8,46 @@ import usePasswordValidation from "../Hooks/usePasswordValidation";
 import useLocalStorage from "../Hooks/useLocalStorage";
 
 const RegistrationForm = () => {
+
+  /**
+   * Local Storage states
+   */
+
+
   const [names, setNames] = useLocalStorage("name", "");
+  const [emails, setEmails] = useLocalStorage("email", "");
+  const [passwords, setPasswords] = useLocalStorage("password", "");
+  const navigate = useNavigate()
+  /**
+   * Importing the custom hooks for form validation
+   */
 
   const name = useNameValidation();
   const email = useEmailValidation();
   const password = usePasswordValidation();
+
+  const user = {
+    names,
+    emails,
+    passwords
+  }
+  
+ 
+
+  localStorage.setItem('user', JSON.stringify(user));
+
+ 
 
   const handleSubmit = (event) => {
     event.preventDefault();
     name.validate();
     email.validate();
     password.validate();
+
+   
+
   };
+ 
 
   return (
     <div className="mx-auto shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)]   rounded-3xl ">
@@ -29,6 +58,7 @@ const RegistrationForm = () => {
         <div>
           <form
             onSubmit={handleSubmit}
+            id="signUp"
             className="flex flex-col justify-center p-10 rounded-3xl items-center"
           >
             <div className="flex flex-col ">
@@ -50,6 +80,13 @@ const RegistrationForm = () => {
                 <input
                   className=" border-b border-[#f9a826] appearance-none bg-main rounded w-full py-2 px-7 leading-tight focus:outline-none focus:shadow-outline "
                   type="text"
+
+                  /**
+                   * Validation and localstorage hooks
+                   * implemented together since the inputs are 
+                   * first validated and then stored 
+                   */
+
                   onChange={(e) => {
                     name.onChange(e)
                     setNames(e.target.value);
@@ -70,9 +107,11 @@ const RegistrationForm = () => {
                 <input
                   className=" border-b border-[#f9a826] appearance-none bg-main rounded w-full py-2 px-7 leading-tight focus:outline-none focus:shadow-outline "
                   type="text"
-                  value={email}
-                  id="email"
-                  {...email}
+                  onChange={(e) => {
+                    email.onChange(e)
+                    setEmails(e.target.value);
+                    console.log(e.target.value);
+                  }}
                 />
                 {email.error ? (
                   <p className="text-error text-sm font-bold">{email.error}</p>
@@ -93,9 +132,11 @@ const RegistrationForm = () => {
                 <input
                   className="border-b border-[#f9a826] appearance-none bg-main rounded w-full py-2 px-7 leading-tight focus:outline-none focus:shadow-outline "
                   type="password"
-                  value={password}
-                  id="password"
-                  {...password}
+                  onChange={(e)=>{
+                    password.onChange(e)
+                    setPasswords(e.target.value);
+                    console.log(e.target.value)
+                  }}
                 />
                 {password.error ? (
                   <p className="text-error text-sm font-bold">
@@ -113,6 +154,7 @@ const RegistrationForm = () => {
             <button
               className="bg-secondary shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)] hover:bg-white font-bold px-8 py-4 rounded-full "
               type="submit"
+              form="signUp"
             >
               Submit
             </button>

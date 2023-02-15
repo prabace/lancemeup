@@ -4,9 +4,12 @@ import {setFilter} from "../Redux/slices/filterSlice";
 
 const Filter = () => {
 
+  
   const filter = useSelector(
     (state) => state.productFilter.filter
     )
+  
+    //Dispatch sends action to onChange function
 
   const dispatch = useDispatch()
 
