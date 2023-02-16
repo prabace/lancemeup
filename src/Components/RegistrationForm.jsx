@@ -49,10 +49,10 @@ const RegistrationForm = () => {
  
 
   return (
-    <div className="mx-auto shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)]   rounded-3xl ">
-      <div className="grid grid-cols-2 justify-center items-center">
+    <div className="mx-auto shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] rounded-3xl ">
+      <div className="grid mobile:grid-cols-1 tablet:grid-cols-1 laptop:grid-cols-2 justify-center items-center">
         <div>
-          <img className="object-cover" src={justdoit} />
+          <img className=" object-cover hidden laptop:block " src={justdoit} />
         </div>
         <div>
           <form

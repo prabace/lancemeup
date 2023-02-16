@@ -14,6 +14,8 @@ const LoginForm = () => {
   const [emails, setEmails] = useLocalStorage("email", "");
   const [passwords, setPasswords] = useLocalStorage("password", "")
 
+  const[admin, setAdmin] = useLocalStorage("admin","")
+
   const email = useEmailValidation();
   const password = usePasswordValidation();
   
@@ -28,29 +30,37 @@ const LoginForm = () => {
 
     email.validate();
     password.validate();
+
+    if (email.value === 'admin@admin.com' && password.value === 'password'){
+          setAdmin(true)
+          
+          return
+    }else{
+      setAdmin(false)
+      console.log('helloo', admin)
+    }
+
+    if (getuserArr && getuserArr.length) {
+      const userdata = JSON.parse(getuserArr);
+     
+      const userlogin = Object.keys(userdata).filter(user => {
+          return userdata[user].emails === email.value && userdata[user].passwords === password.value
+         
+      }).map(user => userdata[user]);
+      
+      console.log(userlogin);
+      if (userlogin.length == 0) {
+        alert("invalid details")
+    } else {
+        console.log("user login succesfulyy");
+  
+        localStorage.setItem("user_login", JSON.stringify(userlogin))
+    }
+  }
   };
 
  
-  if (getuserArr && getuserArr.length) {
-    const userdata = JSON.parse(getuserArr);
-   
-    const userlogin = userdata.filter((el,k) => {
-        return el.emails === email && el.passwords === password
-       
-    });
-    
-    console.log(userlogin);
-  //   if (userlogin.length == 0) {
-  //     alert("invalid details")
-  // } else {
-  //     console.log("user login succesfulyy");
-
-  //     localStorage.setItem("user_login", JSON.stringify(userlogin))
-
-      
-
-  // }
-}
+  
 
   return (
    
@@ -129,7 +139,7 @@ const LoginForm = () => {
             <button
               className="bg-secondary shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)] hover:bg-white font-bold px-8 py-4 rounded-full "
               type="submit"
-              form="signUp"
+              form="signIn"
             >
               Submit
             </button>

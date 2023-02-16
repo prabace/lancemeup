@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import navlogo from "../Assets/navlogo.png";
+import useLocalStorage from "../Hooks/useLocalStorage";
+
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
   const handleClose = () => setNav(!nav);
+
+  const[admin, setAdmin] = useLocalStorage("admin")
+  console.log(admin, 'from navbar')
 
   return (
     <div className="w-screen h-[80px] z-10 bg-main top-0 sticky drop-shadow-lg shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)]">
@@ -15,38 +20,33 @@ const Navbar = () => {
         </div>
         <div>
           <ul className="hidden laptop:flex gap-x-8 ">
-            <li>
-              <Link to="home" duration={500}>
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="about" offset={-200} duration={500}>
-                About
-              </Link>
-            </li>
+          {admin.toString()==='false' &&
             <li>
               <Link to="/product" offset={-50} duration={500}>
                 Products
               </Link>
-            </li>
-            <li>
-              <Link to="platforms" offset={-100} duration={500}>
-                Platforms
+            </li>}
+
+            {admin.toString()==='true'&&
+            <li className="">
+              <Link to="/admin" offset={-50} duration={500}>
+                Items
               </Link>
-            </li>
-            <li>
-              <Link to="pricing" offset={-50} duration={500}>
-                Pricing
-              </Link>
-            </li>
+            </li>}
+           
+        
           </ul>
         </div>
-        <div className="hidden laptop:flex pr-4">
-          <button className="border-none bg-secondary text-black px-6 rounded-full mr-4">
+        <div className="hidden laptop:flex pr-4 gap-x-4">
+         <Link to="/signin"> <button className="bg-secondary shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)] hover:bg-white px-8 py-4 rounded-full ">
             Sign In
-          </button>
-          <button className="px-8 py-3">Sign Up</button>
+          </button></Link>
+          <Link to="/registration"><button className="bg-secondary shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)] hover:bg-white px-8 py-4 rounded-full ">
+            Sign Up
+            </button></Link>
+            <Link to="/signin"><button className="bg-secondary shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)] hover:bg-white px-8 py-4 rounded-full ">
+            Log Out
+            </button></Link>
         </div>
 
         <div className="laptop:hidden mr-4" onClick={handleClick}>
@@ -62,39 +62,15 @@ const Navbar = () => {
         }
       >
         <li className="hover:bg-secondary  p-3 text-center">
-          <Link onClick={handleClose} to="home" duration={500}>
-            Home
+          <Link onClick={handleClose} to="product" duration={500}>
+            Product
           </Link>
         </li>
-        <li className="hover:bg-secondary p-3 text-center">
-          <Link onClick={handleClose} to="about" offset={-200} duration={500}>
-            About
-          </Link>
-        </li>
-        <li className="hover:bg-secondary p-3 text-center">
-          <Link onClick={handleClose} to="support" offset={-50} duration={500}>
-            Support
-          </Link>
-        </li>
-        <li className="hover:bg-secondary p-3 text-center">
-          <Link
-            onClick={handleClose}
-            to="platforms"
-            offset={-100}
-            duration={500}
-          >
-            Platforms
-          </Link>
-        </li>
-        <li className="hover:bg-secondary p-3 text-center">
-          <Link onClick={handleClose} to="pricing" offset={-50} duration={500}>
-            Pricing
-          </Link>
-        </li>
+     
 
-        <div className="flex flex-col my-4">
-          <button className=" text-indigo-600 px-8 py-3 mb-4">Sign In</button>
-          <button className="px-8 py-3">Sign Up</button>
+        <div className="flex flex-col my-4 gap-y-4">
+          <Link to ="/signin"><button className=" bg-secondary shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)] hover:bg-white px-8 py-4 w-full rounded-full ">Sign In</button></Link>
+          <Link to ="/registration"> <button className="bg-secondary shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)] hover:bg-white w-full px-8 py-4 rounded-full ">Sign Up</button></Link>
         </div>
       </ul>
     </div>

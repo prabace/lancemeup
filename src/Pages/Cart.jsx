@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector, getState } from "react-redux";
+import { useSelector } from "react-redux";
 import Items from "../Components/Items";
 
 const Cart = () => {
-  
-    const cartList = useSelector((state) => state.cartItems.cart);
 
+
+    const cartList = useSelector((state) => state.cartItems.cart);
       console.log(cartList)
       
+      const displayCart = Object.keys(cartList).map(item =>
+          <Items
+          key= {cartList[item].id}
+            id = {cartList[item].id}
+            title = {cartList[item].title}
+            price = {cartList[item].price}
+            image = {cartList[item].image}
+          />
+        )
   return (
     <>
       <div className="m-40">
@@ -51,12 +60,26 @@ const Cart = () => {
           <p>
             You have <span>7</span> items in shopping cart.
           </p>
+          
 
           <div className="mt-8 ">
-            <Items />
+            {displayCart}
           </div>
           
         </div>
+        <hr className="mt-10 p-5" />
+      <div className="flex flex-row justify-between">
+        <div className="gap-x-40 flex">
+          <h2 className="text-2xl">TOTAL</h2>
+          <div>
+            <h2 className="text-2xl">$22</h2>
+          </div>
+        </div>
+        <div>
+          <button className="bg-primary py-4 px-8 text-xl rounded-full">Purchase</button>
+        </div>
+        </div>
+        
       </div>
     </>
   );

@@ -3,13 +3,15 @@ import Cards from "../Components/Cards";
 import Filter from "../Components/Filter";
 import Category from "../Components/Category";
 import Slider from "../Components/Slider";
+import { Link } from "react-router-dom";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { setCartItems } from "../Redux/slices/cartSlice";
 
 const Product = () => {
   const [products, setProducts] = useState([]);
   
+  const dispatch = useDispatch()
 
   const filter = useSelector((state) => state.productFilter.filter);
   
@@ -20,13 +22,12 @@ const Product = () => {
   
   const range = useSelector((state) => state.productFilter.range)
   
-const addCart = useSelector((state) => state.cartItems.cart)
+  const addCart = useSelector((state) => state.cartItems.cart)
 
 
   const addToCart = (item) => {
-    console.log(item)
-    console.log([...addCart, item])
-    setCartItems([...addCart, item]);
+    console.log(item) 
+    dispatch(setCartItems([...addCart, item]));
     
     
   };
@@ -68,16 +69,23 @@ const addCart = useSelector((state) => state.cartItems.cart)
   let displayProducts = Object.keys(products)
     .filter((product) => {
       
-      if (selectCategory) {
-        console.log(selectCategory, products[product].category);
-        return products[product].category === category;
-      }
-      if(range){
-       return products[product].price >= range.minPrice &&  products[product].price <=range.maxPrice
-      }
+      // if (selectCategory) {
+      //   console.log(selectCategory, products[product].category);
+      //   return products[product].category === category;
+      // }
+      // if(range){
+      //  return products[product].price >= range.minPrice &&  products[product].price <=range.maxPrice
+      // }
 
-      let title = products[product].title.toLowerCase();
-      return filter ? title.includes(filter) : true;
+      // let title = products[product].title.toLowerCase();
+      // return filter ? title.includes(filter) : true;
+
+      return (category === "" || products[product].category === category) &&
+      (filter === "" ||
+        products[product].title.toLowerCase().includes(filter.toLowerCase())) &&
+      (range.minPrice === 0 || products[product].price >= range.minPrice) &&
+      (range.maxPrice === 0 || products[product].price <= range.maxPrice); 
+
     })
     .map((product) => {
       return (
@@ -88,7 +96,7 @@ const addCart = useSelector((state) => state.cartItems.cart)
           price={products[product].price}
           category={products[product].category}
           image={products[product].image}
-          addToCart={addToCart}
+          addToCart= {addToCart}
         />
       );
     });
@@ -96,15 +104,17 @@ const addCart = useSelector((state) => state.cartItems.cart)
   return (
     <div>
       <div className="flex flex-row justify-between m-20">
-        <h2>Products</h2>
-        <a className="flex flex-row" href="/cart">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
+        <h2 className="text-2xl">Explore Your Options</h2>
+     <Link to= "/cart">
+     <li class="font-sans block mt-4 lg:inline-block lg:mt-0 lg:ml-6 align-middle text-black hover:text-gray-700">
+  <a href="#" role="button" class="relative flex">
+  <svg
+           xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-8 h-10"
+            className="w-8 h-10 flex flex-row "
           >
             <path
               strokeLinecap="round"
@@ -112,7 +122,12 @@ const addCart = useSelector((state) => state.cartItems.cart)
               d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
             />
           </svg>
-        </a>
+      <span class="absolute right-0 top-0 rounded-full bg-primary w-4 h-4 top right p-0 m-0 text-white font-mono text-sm  leading-tight text-center">
+        {addCart.length}
+    </span>
+  </a>
+</li>
+        </Link>
       </div>
       <div className=" grid grid-auto-fit-sm h-screen m-20">
         <div className="max-w-[300px]">
@@ -138,7 +153,7 @@ const addCart = useSelector((state) => state.cartItems.cart)
           {products.length == 0 ? (
             display
           ) : (
-            <div className=" m-10 bg-white gap-x-8 grid grid-auto-fit-[25rem]">
+            <div className=" m-10 bg-white gap-x-8  grid grid-auto-fit-[20rem]">
               {displayProducts}
             </div>
           )}
