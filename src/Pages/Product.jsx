@@ -30,6 +30,7 @@ const Product = () => {
     dispatch(setCartItems([...addCart, item]));
   };
 
+   
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetch("https://fakestoreapi.com/products");
@@ -65,17 +66,6 @@ const Product = () => {
 
   let displayProducts = Object.keys(products)
     .filter((product) => {
-      // if (selectCategory) {
-      //   console.log(selectCategory, products[product].category);
-      //   return products[product].category === category;
-      // }
-      // if(range){
-      //  return products[product].price >= range.minPrice &&  products[product].price <=range.maxPrice
-      // }
-
-      // let title = products[product].title.toLowerCase();
-      // return filter ? title.includes(filter) : true;
-
       return (
         (category === "" || products[product].category === category) &&
         (filter === "" ||

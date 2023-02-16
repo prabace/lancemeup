@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react'
 
 function getSavedValue(key, initialValue){
    const savedValue = JSON.parse (localStorage.getItem(key))
-   if(savedValue.toString()==='false'? true : savedValue) return savedValue
+   if(savedValue) return savedValue
 
    if(initialValue instanceof Function) return initialValue()
    return initialValue

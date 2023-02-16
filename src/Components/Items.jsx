@@ -10,7 +10,7 @@ const Items = (props) => {
         <div className="title">
           <h2 className="text-xl">{props.title}</h2>
         </div>
-        <div className="quantity flex flex-row gap-x-5">
+        {/* <div className="quantity flex flex-row gap-x-5">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -37,7 +37,7 @@ const Items = (props) => {
               d="M12 4.5v15m7.5-7.5h-15"
             />
           </svg>
-        </div>
+        </div> */}
         <div className="price">
           <h2 className="text-xl">Rs. {props.price}</h2>
         </div>
