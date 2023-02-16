@@ -3,7 +3,11 @@ import {createSlice} from '@reduxjs/toolkit'
 const initialState = {
     filter: '',
     category: '',
-    selectCategory: false
+    selectCategory: false,
+    range:{
+        minPrice: 0,
+        maxPrice: 500,
+    }
 }
 
 export const filterSlice = createSlice({
@@ -18,11 +22,14 @@ export const filterSlice = createSlice({
         },
         selectCategory: (state, action) => {
             state.selectCategory = action.payload
+        },
+        setSlider: (state, action) =>{
+            state.range = action.payload
         }
      
     }
 })
 
-export const { setFilter, setCategory, selectCategory } = filterSlice.actions
+export const { setFilter, setCategory, selectCategory, setSlider } = filterSlice.actions
 
 export default filterSlice.reducer

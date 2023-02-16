@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, getState } from "react-redux";
 import Items from "../Components/Items";
 
 const Cart = () => {
+  
+    const cartList = useSelector((state) => state.cartItems.cart);
 
-
+      console.log(cartList)
+      
   return (
     <>
       <div className="m-40">

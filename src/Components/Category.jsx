@@ -1,6 +1,5 @@
 import React, {useState,useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Cards from "./Cards";
 import { setCategory, selectCategory } from "../Redux/slices/filterSlice";
 
 const Category = () => {
@@ -29,22 +28,6 @@ const category = useSelector(
         };
         fetchData();
       }, []);
-
-    //   useEffect(() => {
-    //     const fetchData = async () => {
-    //       const data = await fetch(`https://fakestoreapi.com/products/category/${selectedCategory}`);
-    
-    //       const response = await data.json();
-    
-    //       console.log(response);
-    //       setFilteredProducts(response);
-    //     };
-    //     fetchData();
-    //   }, [selectedCategory]);
-
-    //   const handleCategoryChange = event => {
-    //   setSelectedCategory(event.target.value);
-    //   };
 
   return (
     <div className="">

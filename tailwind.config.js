@@ -14,7 +14,8 @@ module.exports = {
      'error':'#880808',
      'success':'#4BB543',
      'dark':'#050505',
-     'item':'#BABABA'
+     'item':'#BABABA',
+     'gray':'#AAAABC'
     },
 
     screens: {
