@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
 import logo from "../Assets/logo.png";
 
@@ -21,11 +20,7 @@ const LoginForm = () => {
   const getuserArr = localStorage.getItem("user")
   console.log(getuserArr)
 
-  const user = {
-    
-    emails,
-    passwords
-  }
+
 
 
   const handleSubmit = (event) => {
@@ -34,6 +29,28 @@ const LoginForm = () => {
     email.validate();
     password.validate();
   };
+
+ 
+  if (getuserArr && getuserArr.length) {
+    const userdata = JSON.parse(getuserArr);
+   
+    const userlogin = userdata.filter((el,k) => {
+        return el.emails === email && el.passwords === password
+       
+    });
+    
+    console.log(userlogin);
+  //   if (userlogin.length == 0) {
+  //     alert("invalid details")
+  // } else {
+  //     console.log("user login succesfulyy");
+
+  //     localStorage.setItem("user_login", JSON.stringify(userlogin))
+
+      
+
+  // }
+}
 
   return (
    

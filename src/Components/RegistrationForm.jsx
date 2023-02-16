@@ -9,6 +9,7 @@ import useLocalStorage from "../Hooks/useLocalStorage";
 
 const RegistrationForm = () => {
 
+  
   /**
    * Local Storage states
    */
@@ -17,7 +18,10 @@ const RegistrationForm = () => {
   const [names, setNames] = useLocalStorage("name", "");
   const [emails, setEmails] = useLocalStorage("email", "");
   const [passwords, setPasswords] = useLocalStorage("password", "");
+
   const navigate = useNavigate()
+
+
   /**
    * Importing the custom hooks for form validation
    */
@@ -26,26 +30,21 @@ const RegistrationForm = () => {
   const email = useEmailValidation();
   const password = usePasswordValidation();
 
-  const user = {
+  const user = [{
     names,
     emails,
-    passwords
-  }
-  
- 
+    passwords,}]
 
-  localStorage.setItem('user', JSON.stringify(user));
 
- 
+    localStorage.setItem('user', JSON.stringify(user));
 
   const handleSubmit = (event) => {
     event.preventDefault();
     name.validate();
     email.validate();
     password.validate();
-
+  
    
-
   };
  
 

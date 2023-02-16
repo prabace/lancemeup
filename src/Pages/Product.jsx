@@ -72,9 +72,9 @@ const addCart = useSelector((state) => state.cartItems.cart)
         console.log(selectCategory, products[product].category);
         return products[product].category === category;
       }
-      // if(range){
-      //  return products[product].price >= range.minPrice &&  products[product].price <=range.maxPrice
-      // }
+      if(range){
+       return products[product].price >= range.minPrice &&  products[product].price <=range.maxPrice
+      }
 
       let title = products[product].title.toLowerCase();
       return filter ? title.includes(filter) : true;
