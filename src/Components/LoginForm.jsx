@@ -5,17 +5,29 @@ import logo from "../Assets/logo.png";
 import useEmailValidation from "../Hooks/useEmailValidation";
 import usePasswordValidation from "../Hooks/usePasswordValidation";
 import useLocalStorage from "../Hooks/useLocalStorage";
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { setAdmin, setIsLoggedIn, setUser } from "../Redux/slices/userSlice";
+import { useNavigate } from "react-router-dom";
 
 
 const LoginForm = () => {
 
-  const [emails, setEmails] = useLocalStorage("email", "");
-  const [passwords, setPasswords] = useLocalStorage("password", "")
+  const dispatch = useDispatch()
 
-  const[admin, setAdmin] = useLocalStorage("admin","")
+  const navigate = useNavigate()
 
+  const user = useSelector(
+    (state) => state.users.user
+    )
+
+    const isLoggedIn = useSelector(
+      (state) => state.users.isLoggedIn
+      )
+
+      const admin= useSelector(
+        (state) => state.users.admin
+        )
+  
   const email = useEmailValidation();
   const password = usePasswordValidation();
   
@@ -31,13 +43,14 @@ const LoginForm = () => {
     email.validate();
     password.validate();
 
+   
     if (email.value === 'admin@admin.com' && password.value === 'password'){
-          setAdmin(true)
-          
+         dispatch (setAdmin(true))
+          dispatch (setIsLoggedIn(true))
+          navigate('/admin')
           return
     }else{
-      setAdmin(false)
-      console.log('helloo', admin)
+      dispatch (setAdmin(false))
     }
 
     if (getuserArr && getuserArr.length) {
@@ -52,9 +65,17 @@ const LoginForm = () => {
       if (userlogin.length == 0) {
         alert("invalid details")
     } else {
-        console.log("user login succesfulyy");
+      dispatch(setIsLoggedIn(true))
+        
+      console.log("user login succesfulyy");
+        dispatch(setUser({
+          email: email.value,
+          password: password.value
+        }))
   
         localStorage.setItem("user_login", JSON.stringify(userlogin))
+
+        navigate('/product')
     }
   }
   };
@@ -93,7 +114,6 @@ const LoginForm = () => {
                 type="text"
                 onChange={(e) => {
                   email.onChange(e)
-                  setEmails(e.target.value);
                   console.log(e.target.value);
                 }}
               />
@@ -117,7 +137,7 @@ const LoginForm = () => {
                 type="password"
                 onChange={(e)=>{
                   password.onChange(e)
-                  setPasswords(e.target.value);
+                 
                   console.log(e.target.value)
                 }}
               />

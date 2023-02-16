@@ -67,8 +67,8 @@ const Cart = () => {
           </div>
           
         </div>
-        <hr className="mt-10 p-5" />
-      <div className="flex flex-row justify-between">
+        
+      <div className="grid grid-auto-fit-xl gap-y-10 justify-between">
         <div className="gap-x-40 flex">
           <h2 className="text-2xl">TOTAL</h2>
           <div>

@@ -3,7 +3,7 @@ import React from "react";
 const Items = (props) => {
   return (
     <div className="cart-items my-5">
-      <div className="items-info grid grid-auto-fit-lg items-center">
+      <div className="items-info grid grid-auto-fit-lg items-center gap-y-8">
         <div className="image">
           <img className="h-[15rem]" src={props.image} />
         </div>
@@ -42,6 +42,7 @@ const Items = (props) => {
           <h2 className="text-xl">Rs. {props.price}</h2>
         </div>
       </div>
+      <hr className="mt-6"/>
     
     </div>
   );

@@ -3,14 +3,25 @@ import { Link } from "react-router-dom";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import navlogo from "../Assets/navlogo.png";
 import useLocalStorage from "../Hooks/useLocalStorage";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsLoggedIn } from "../Redux/slices/userSlice";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
   const handleClose = () => setNav(!nav);
 
-  const[admin, setAdmin] = useLocalStorage("admin")
-  console.log(admin, 'from navbar')
+  const dispatch = useDispatch()
+ 
+  const isLoggedIn = useSelector(
+    (state) => state.users.isLoggedIn
+    )
+
+    const admin= useSelector(
+      (state) => state.users.admin
+      )
+console.log(admin)
+
 
   return (
     <div className="w-screen h-[80px] z-10 bg-main top-0 sticky drop-shadow-lg shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)]">
@@ -20,14 +31,15 @@ const Navbar = () => {
         </div>
         <div>
           <ul className="hidden laptop:flex gap-x-8 ">
-          {admin.toString()==='false' &&
+
+          {!admin &&
             <li>
               <Link to="/product" offset={-50} duration={500}>
                 Products
               </Link>
             </li>}
 
-            {admin.toString()==='true'&&
+            {admin &&
             <li className="">
               <Link to="/admin" offset={-50} duration={500}>
                 Items
@@ -37,16 +49,25 @@ const Navbar = () => {
         
           </ul>
         </div>
+        
         <div className="hidden laptop:flex pr-4 gap-x-4">
+          {!isLoggedIn &&
+          <div>
          <Link to="/signin"> <button className="bg-secondary shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)] hover:bg-white px-8 py-4 rounded-full ">
             Sign In
           </button></Link>
           <Link to="/registration"><button className="bg-secondary shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)] hover:bg-white px-8 py-4 rounded-full ">
             Sign Up
             </button></Link>
-            <Link to="/signin"><button className="bg-secondary shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)] hover:bg-white px-8 py-4 rounded-full ">
+            </div>}
+            {isLoggedIn &&
+            <Link to="/signin"><button 
+            onClick={()=>{
+              dispatch(setIsLoggedIn(false))
+            }}
+            className="bg-secondary shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)] hover:bg-white px-8 py-4 rounded-full ">
             Log Out
-            </button></Link>
+            </button></Link>}
         </div>
 
         <div className="laptop:hidden mr-4" onClick={handleClick}>
