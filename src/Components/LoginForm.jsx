@@ -15,6 +15,7 @@ const LoginForm = () => {
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
+  
 
   const user = useSelector(
     (state) => state.users.user
@@ -39,11 +40,10 @@ const LoginForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     email.validate();
     password.validate();
 
-   
+     
     if (email.value === 'admin@admin.com' && password.value === 'password'){
          dispatch (setAdmin(true))
           dispatch (setIsLoggedIn(true))
@@ -63,7 +63,8 @@ const LoginForm = () => {
       
       console.log(userlogin);
       if (userlogin.length == 0) {
-        alert("invalid details")
+        alert("No user found. SignUp first.")
+        navigate('/registration')
     } else {
       dispatch(setIsLoggedIn(true))
         

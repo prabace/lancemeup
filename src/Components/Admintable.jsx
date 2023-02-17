@@ -6,7 +6,7 @@ const Admintable = (props) => {
      
       <tbody>
         <tr>
-          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+          <td class="px-5 py-10 border-b border-gray-200 bg-white text-sm">
             <div class="flex items-center">
               <div class="flex-shrink-0 w-12 h-12">
                 <img className="object-contain" src={props.image} />

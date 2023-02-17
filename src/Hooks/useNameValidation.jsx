@@ -9,9 +9,7 @@ const useNameValidation = () => {
         }else if (name.value.length < 3){
             name.setError('Name must be atleast 3 characters*')
         }
-        else{
-           name.setValid('Name is valid')
-        }
+        
     }
 
     return{

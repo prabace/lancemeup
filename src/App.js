@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar';
 import Cart from './Pages/Cart';
 import {BrowserRouter,Routes, Route} from "react-router-dom"
 import Admin from './Pages/Admin';
+import ProtectedRoutes from './Components/Auth';
 
 
 function App() {
@@ -19,12 +20,14 @@ function App() {
         path="/signin" element={ <Login/> } />
         <Route 
         path="/registration" element={ <Registration/> } />
+        <Route element={<ProtectedRoutes/>}>
         <Route 
         path="/product" element={ <Product/> } />
          <Route 
         path="/cart" element={ <Cart/> } />
         <Route 
         path="/admin" element={ <Admin/> } />
+        </Route>
       </Routes>
       
       </BrowserRouter>

@@ -9,9 +9,7 @@ const usePasswordValidation = () => {
             password.setError('Password is required*')
         }else if(password.value.length < 8){
             password.setError('Password must be atleast 8 characters*')
-        } else{
-            password.setValid('Password is valid')
-         }
+        } 
         }
         return{
             ...password,

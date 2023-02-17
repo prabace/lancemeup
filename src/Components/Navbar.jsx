@@ -17,6 +17,7 @@ const Navbar = () => {
     (state) => state.users.isLoggedIn
     )
 
+  console.log(isLoggedIn)
     const admin= useSelector(
       (state) => state.users.admin
       )
@@ -32,14 +33,14 @@ console.log(admin)
         <div>
           <ul className="hidden laptop:flex gap-x-8 ">
 
-          {!admin &&
+          {!admin && isLoggedIn &&
             <li>
               <Link to="/product" offset={-50} duration={500}>
                 Products
               </Link>
             </li>}
 
-            {admin &&
+            {admin && isLoggedIn &&
             <li className="">
               <Link to="/admin" offset={-50} duration={500}>
                 Items
@@ -52,7 +53,7 @@ console.log(admin)
         
         <div className="hidden laptop:flex pr-4 gap-x-4">
           {!isLoggedIn &&
-          <div>
+          <div className="flex gap-x-5">
          <Link to="/signin"> <button className="bg-secondary shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)] hover:bg-white px-8 py-4 rounded-full ">
             Sign In
           </button></Link>

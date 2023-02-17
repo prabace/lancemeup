@@ -10,9 +10,7 @@ const validateEmail = () => {
         email.setError('Email is required*')
     }else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email.value)){
         email.setError('Invalid email address*')
-    } else{
-        email.setValid('Email is valid')
-     }
+    } 
 }
 
 return{

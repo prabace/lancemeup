@@ -6,7 +6,7 @@ const initialState = {
     password:''
 },
    admin:'',
-   isLoggedIn: false,
+   isLoggedIn: '',
 }
 
 export const userSlice = createSlice({
